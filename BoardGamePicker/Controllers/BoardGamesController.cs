@@ -20,9 +20,16 @@ namespace BoardGamePicker.Controllers
         }
 
         // GET: BoardGames
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string search)
         {
-            return View(await _context.BoardGame.ToListAsync());
+            var boardGames = from bg in _context.BoardGame select bg;
+
+            if (!String.IsNullOrEmpty(search))
+            {
+                boardGames = boardGames.Where(s => s.Title.Contains(search));
+            }
+            
+            return View(await boardGames.ToListAsync());
         }
 
         // GET: BoardGames/Details/5
