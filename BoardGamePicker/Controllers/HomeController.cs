@@ -29,19 +29,10 @@ namespace BoardGamePicker.Controllers
 
         public async Task<IActionResult> Results(int players, int minutes)
         {
-            var boardGames = from bg in _bgContext.BoardGame select bg;
-
-            if (players > 0)
-            {
-                boardGames = boardGames
+            var boardGames = _bgContext.BoardGame
                     .Where(bg => players >= bg.MinPlayers)
-                    .Where(bg => players <= bg.MaxPlayers);
-            }
-
-            if (minutes > 0)
-            {
-                boardGames = boardGames.Where(bg => minutes >= bg.Length);
-            }
+                    .Where(bg => players <= bg.MaxPlayers)
+                    .Where(bg => minutes >= bg.Length);
 
             return View(await boardGames.ToListAsync());
         }
