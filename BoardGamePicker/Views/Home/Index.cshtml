@@ -2,24 +2,4 @@
     ViewData["Title"] = "Home";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Find a Game to Play</h1>
-</div>
-
-<div class="row justify-content-md-center">
-    <div class="col-md-4">
-        <form asp-controller="Home" asp-action="Results" method="get">
-            <div class="form-group">
-                <label class="control-label">How many players do you have?</label>
-                <input type="text" name="Players" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label class="control-label">How long do you have to play (in minutes)?</label>
-                <input type="text" name="Minutes" class="form-control" />
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Find Games" class="btn btn-primary btn-block" />
-            </div>
-        </form>
-    </div>
-</div>
+<partial name="_Form" />
