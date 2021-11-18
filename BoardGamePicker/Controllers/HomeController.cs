@@ -37,6 +37,24 @@ namespace BoardGamePicker.Controllers
             return View(await boardGames.ToListAsync());
         }
 
+        public async Task<IActionResult> Random(int players, int minutes)
+        {
+            var boardGames = _bgContext.BoardGame
+                    .Where(bg => players >= bg.MinPlayers)
+                    .Where(bg => players <= bg.MaxPlayers)
+                    .Where(bg => minutes >= bg.Length);
+
+            var randomGame = await boardGames
+                    .OrderBy(r => Guid.NewGuid())
+                    .FirstOrDefaultAsync();
+
+            return View(new GameSearchViewModel {
+                BoardGame = randomGame,
+                Players = players,
+                Minutes = minutes
+            });
+        }
+
         public IActionResult Privacy()
         {
             return View();
