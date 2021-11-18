@@ -17,14 +17,7 @@ namespace BoardGamePicker.Models
                 context.BoardGame.AddRange(
                     new BoardGame
                     {
-                        Title = "Exploding Kittens",
-                        MinPlayers = 2,
-                        MaxPlayers = 5,
-                        Length = 15
-                    },
-                    new BoardGame
-                    {
-                        Title = "Forbidden Island",
+                        Title = "Boss Monster",
                         MinPlayers = 2,
                         MaxPlayers = 4,
                         Length = 30
@@ -35,6 +28,55 @@ namespace BoardGamePicker.Models
                         MinPlayers = 2,
                         MaxPlayers = 8,
                         Length = 15
+                    },
+                    new BoardGame
+                    {
+                        Title = "Dragonwood",
+                        MinPlayers = 2,
+                        MaxPlayers = 4,
+                        Length = 20
+                    },
+                    new BoardGame
+                    {
+                        Title = "Exploding Kittens",
+                        MinPlayers = 2,
+                        MaxPlayers = 5,
+                        Length = 15
+                    },
+                    new BoardGame
+                    {
+                        Title = "Fluxx",
+                        MinPlayers = 2,
+                        MaxPlayers = 6,
+                        Length = 30
+                    },
+                    new BoardGame
+                    {
+                        Title = "Forbidden Desert",
+                        MinPlayers = 2,
+                        MaxPlayers = 5,
+                        Length = 45
+                    },
+                    new BoardGame
+                    {
+                        Title = "Forbidden Island",
+                        MinPlayers = 2,
+                        MaxPlayers = 4,
+                        Length = 30
+                    },
+                    new BoardGame
+                    {
+                        Title = "Here to Slay",
+                        MinPlayers = 2,
+                        MaxPlayers = 6,
+                        Length = 90
+                    },
+                    new BoardGame
+                    {
+                        Title = "Smash Up",
+                        MinPlayers = 2,
+                        MaxPlayers = 4,
+                        Length = 45
                     },
                     new BoardGame
                     {
