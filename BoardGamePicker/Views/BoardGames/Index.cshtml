@@ -2,6 +2,9 @@
 
 @{
     ViewData["Title"] = "Index";
+
+    ViewData["SearchPlayers"] = (Model.Players != 0) ? Model.Players : "";
+    ViewData["SearchMinutes"] = (Model.Minutes != 0) ? Model.Minutes : "";
 }
 
 <h1>Game List</h1>
@@ -20,11 +23,11 @@
                 </div>
                 <div class="form-group col-md-3">
                     <label class="control-label">Players</label>
-                    <input type="text" name="Players" value="@Model.Players" class="form-control" />
+                    <input type="text" name="Players" value='@ViewData["SearchPlayers"]' class="form-control" />
                 </div>
                 <div class="form-group col-md-3">
                     <label class="control-label">Mintutes</label>
-                    <input type="text" name="Minutes" value="@Model.Minutes" class="form-control" />
+                    <input type="text" name="Minutes" value='@ViewData["SearchMinutes"]' class="form-control" />
                 </div>
             </div>
             <div class="form-row">
@@ -55,26 +58,26 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.BoardGames) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MinPlayers)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MaxPlayers)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Length)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.BoardGames) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MinPlayers)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaxPlayers)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Length)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
