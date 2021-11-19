@@ -48,7 +48,7 @@ namespace BoardGamePicker.Controllers
                     .OrderBy(r => Guid.NewGuid())
                     .FirstOrDefaultAsync();
 
-            return View(new GameSearchViewModel {
+            return View(new GamePickerViewModel {
                 BoardGame = randomGame,
                 Players = players,
                 Minutes = minutes

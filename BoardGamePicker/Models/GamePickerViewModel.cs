@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace BoardGamePicker.Models
 {
-    public class GameSearchViewModel
+    public class GamePickerViewModel
     {
         public BoardGame BoardGame { get; set; }
         public int Players { get; set; }
