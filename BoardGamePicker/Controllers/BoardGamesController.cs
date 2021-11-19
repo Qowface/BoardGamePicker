@@ -20,15 +20,23 @@ namespace BoardGamePicker.Controllers
         }
 
         // GET: BoardGames
-        public async Task<IActionResult> Index(string search)
+        public async Task<IActionResult> Index(string title, int players, int minutes)
         {
             var boardGames = from bg in _context.BoardGame select bg;
 
-            if (!String.IsNullOrEmpty(search))
+            if (!String.IsNullOrEmpty(title))
             {
-                boardGames = boardGames.Where(s => s.Title.Contains(search));
+                boardGames = boardGames.Where(bg => bg.Title.Contains(title));
             }
-            
+            if (players != 0)
+            {
+                boardGames = boardGames.Where(bg => players >= bg.MinPlayers).Where(bg => players <= bg.MaxPlayers);
+            }
+            if (minutes != 0)
+            {
+                boardGames = boardGames.Where(bg => minutes >= bg.Length);
+            }
+
             return View(await boardGames.ToListAsync());
         }
 
