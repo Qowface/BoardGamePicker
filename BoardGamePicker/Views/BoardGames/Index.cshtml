@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BoardGamePicker.Models.BoardGame>
+﻿@model BoardGamePicker.Models.GameListViewModel
 
 @{
     ViewData["Title"] = "Index";
@@ -16,15 +16,15 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label class="control-label">Title</label>
-                    <input type="text" name="Title" class="form-control" />
+                    <input type="text" name="Title" value="@Model.Title" class="form-control" />
                 </div>
                 <div class="form-group col-md-3">
                     <label class="control-label">Players</label>
-                    <input type="text" name="Players" class="form-control" />
+                    <input type="text" name="Players" value="@Model.Players" class="form-control" />
                 </div>
                 <div class="form-group col-md-3">
                     <label class="control-label">Mintutes</label>
-                    <input type="text" name="Minutes" class="form-control" />
+                    <input type="text" name="Minutes" value="@Model.Minutes" class="form-control" />
                 </div>
             </div>
             <div class="form-row">
@@ -40,22 +40,22 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+                @Html.DisplayNameFor(model => model.BoardGames.First().Title)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MinPlayers)
+                @Html.DisplayNameFor(model => model.BoardGames.First().MinPlayers)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MaxPlayers)
+                @Html.DisplayNameFor(model => model.BoardGames.First().MaxPlayers)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Length)
+                @Html.DisplayNameFor(model => model.BoardGames.First().Length)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model.BoardGames) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Title)

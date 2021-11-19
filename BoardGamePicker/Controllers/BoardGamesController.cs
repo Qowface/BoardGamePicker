@@ -37,7 +37,12 @@ namespace BoardGamePicker.Controllers
                 boardGames = boardGames.Where(bg => minutes >= bg.Length);
             }
 
-            return View(await boardGames.ToListAsync());
+            return View(new GameListViewModel {
+                BoardGames = await boardGames.ToListAsync(),
+                Title = title,
+                Players = players,
+                Minutes = minutes
+            });
         }
 
         // GET: BoardGames/Details/5
