@@ -10,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using BoardGamePicker.Data;
+using BoardGamePicker.Models;
 
 namespace BoardGamePicker
 {
@@ -29,6 +30,8 @@ namespace BoardGamePicker
 
             services.AddDbContext<BoardGamePickerContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("BoardGamePickerContext")));
+
+            services.AddScoped<IBoardGameRepository, BoardGameRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

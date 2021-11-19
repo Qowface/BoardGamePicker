@@ -14,12 +14,12 @@ namespace BoardGamePicker.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly BoardGamePickerContext _bgContext;
+        private readonly IBoardGameRepository _bgRepository;
 
-        public HomeController(ILogger<HomeController> logger, BoardGamePickerContext bgContext)
+        public HomeController(ILogger<HomeController> logger, IBoardGameRepository bgRepository)
         {
             _logger = logger;
-            _bgContext = bgContext;
+            _bgRepository = bgRepository;
         }
 
         public IActionResult Index()
@@ -32,27 +32,10 @@ namespace BoardGamePicker.Controllers
             });
         }
 
-        public async Task<IActionResult> Results(int players, int minutes)
-        {
-            var boardGames = _bgContext.BoardGame
-                    .Where(bg => players >= bg.MinPlayers)
-                    .Where(bg => players <= bg.MaxPlayers)
-                    .Where(bg => minutes >= bg.Length);
-
-            return View(await boardGames.ToListAsync());
-        }
-
         public async Task<IActionResult> Random(int players, int minutes)
         {
-            var boardGames = _bgContext.BoardGame
-                    .Where(bg => players >= bg.MinPlayers)
-                    .Where(bg => players <= bg.MaxPlayers)
-                    .Where(bg => minutes >= bg.Length);
-
-            var randomGame = await boardGames
-                    .OrderBy(r => Guid.NewGuid())
-                    .FirstOrDefaultAsync();
-
+            var randomGame = await _bgRepository.RandomBoardGameAsync(players, minutes);
+            
             return View(new GamePickerViewModel {
                 BoardGame = randomGame,
                 Players = players,

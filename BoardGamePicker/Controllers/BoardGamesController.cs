@@ -13,32 +13,21 @@ namespace BoardGamePicker.Controllers
     public class BoardGamesController : Controller
     {
         private readonly BoardGamePickerContext _context;
+        private readonly IBoardGameRepository _repository;
 
-        public BoardGamesController(BoardGamePickerContext context)
+        public BoardGamesController(BoardGamePickerContext context, IBoardGameRepository repository)
         {
             _context = context;
+            _repository = repository;
         }
 
         // GET: BoardGames
         public async Task<IActionResult> Index(string title, int players, int minutes)
         {
-            var boardGames = from bg in _context.BoardGame select bg;
-
-            if (!String.IsNullOrEmpty(title))
-            {
-                boardGames = boardGames.Where(bg => bg.Title.Contains(title));
-            }
-            if (players != 0)
-            {
-                boardGames = boardGames.Where(bg => players >= bg.MinPlayers).Where(bg => players <= bg.MaxPlayers);
-            }
-            if (minutes != 0)
-            {
-                boardGames = boardGames.Where(bg => minutes >= bg.Length);
-            }
-
+            var boardGames = await _repository.FilteredBoardGamesAsync(title, players, minutes);
+            
             return View(new GameListViewModel {
-                BoardGames = await boardGames.ToListAsync(),
+                BoardGames = boardGames,
                 Title = title,
                 Players = players,
                 Minutes = minutes
