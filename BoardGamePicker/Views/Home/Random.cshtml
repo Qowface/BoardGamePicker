@@ -8,40 +8,49 @@
 
 <hr />
 
-<div class="text-center">
-    <p>The game you will be playing is...</p>
-    <h1 class="display-4">@Html.DisplayFor(model => model.BoardGame.Title)</h1>
-    <br />
-    <p>
-        <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#gameDetails">
-            View Game Details
-        </button>
-    </p>
-</div>
-
-<div class="collapse" id="gameDetails">
-    <div class="card card-body">
-        <h4> @Html.DisplayFor(model => model.BoardGame.Title)</h4>
-        <hr />
-        <dl class="row">
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.BoardGame.MinPlayers)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.BoardGame.MinPlayers)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.BoardGame.MaxPlayers)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.BoardGame.MaxPlayers)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.BoardGame.Length)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.BoardGame.Length)
-            </dd>
-        </dl>
+@if (Model.BoardGame == null)
+{
+    <div class="alert alert-danger text-center" role="alert">
+        No game found for this criteria!
     </div>
-</div>
+}
+else
+{
+    <div class="text-center">
+        <p>The game you will be playing is...</p>
+        <h1 class="display-4">@Html.DisplayFor(model => model.BoardGame.Title)</h1>
+        <br />
+        <p>
+            <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#gameDetails">
+                View Game Details
+            </button>
+        </p>
+    </div>
+
+    <div class="collapse" id="gameDetails">
+        <div class="card card-body">
+            <h4> @Html.DisplayFor(model => model.BoardGame.Title)</h4>
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.BoardGame.MinPlayers)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.BoardGame.MinPlayers)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.BoardGame.MaxPlayers)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.BoardGame.MaxPlayers)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.BoardGame.Length)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.BoardGame.Length)
+                </dd>
+            </dl>
+        </div>
+    </div>
+}

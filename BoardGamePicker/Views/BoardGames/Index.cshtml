@@ -58,7 +58,8 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.BoardGames) {
+        @foreach (var item in Model.BoardGames)
+        {
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.Title)
@@ -81,3 +82,9 @@
         }
     </tbody>
 </table>
+@if (Model.BoardGames.Count() == 0)
+{
+    <div class="alert alert-danger" role="alert">
+        No games found for this criteria!
+    </div>
+}
