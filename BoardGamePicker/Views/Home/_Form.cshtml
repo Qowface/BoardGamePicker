@@ -1,8 +1,8 @@
 ﻿@model BoardGamePicker.Models.GamePickerViewModel
 
 @{ 
-    ViewData["Players"] = (Model != null) ? Model.Players : "";
-    ViewData["Minutes"] = (Model != null) ? Model.Minutes : "";
+    ViewData["Players"] = (Model.Players != 0) ? Model.Players : "";
+    ViewData["Minutes"] = (Model.Minutes != 0) ? Model.Minutes : "";
 }
 
 <div class="text-center">

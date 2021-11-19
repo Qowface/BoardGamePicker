@@ -24,7 +24,12 @@ namespace BoardGamePicker.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return View(new GamePickerViewModel
+            {
+                BoardGame = null,
+                Players = 0,
+                Minutes = 0
+            });
         }
 
         public async Task<IActionResult> Results(int players, int minutes)
